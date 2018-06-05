@@ -1,0 +1,3 @@
+class PasswordInvalidFormatError(Exception):
+	pass
+

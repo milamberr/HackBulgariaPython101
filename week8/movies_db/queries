@@ -1,0 +1,80 @@
+SELECT ADDRESS
+	from studio
+	where NAME="MGM";
+	
+SELECT birthdate
+	from moviestar
+	where NAME='Kim Basinger';
+	
+select name
+	from movieexec
+	where networth>10000000;
+	
+select name
+	from moviestar
+	where gender='M' or address like "%Prefect Rd%";
+	
+delete from moviestar
+	where name="Zahari Baharov";
+
+insert into moviestar
+	values("Zahari Baharov", 'V centura', 'M', '1980-11-16');
+	
+delete from studio
+	where address like '%5%';
+
+update movie
+	set studioname='Fox'
+	where title like "%star%";
+	
+select moviestar.NAME
+from moviestar
+join starsin
+on moviestar.name=starsin.starname
+join movie
+on starsin.movietitle=movie.title
+where moviestar.gender='M' and movie.title='Terms of Endearment';
+
+select moviestar.NAME
+from moviestar
+join starsin
+on moviestar.name=starsin.starname
+join movie
+on starsin.movieyear=movie.year
+join studio
+on movie.studioname=studio.name
+where movie.year=1995 and studio.name='MGM';
+
+alter table studio
+add column presidentname TEXT(50);
+
+update studio
+set presidentname='pesho'
+where name='MGM';
+
+update studio
+set presidentname='tosho'
+where name like '%USA%';
+
+select presidentname
+from studio
+where name='MGM';
+
+select movie.title
+from movie
+where movie.length > (
+	select movie.length
+	from movie
+	where movie.title = "Gone With the Wind"
+);
+
+select movieyear,starname
+from starsin
+group by starname
+order by movieyear;
+
+select studio.name,studio.address,movie.length
+from studio
+join movie
+on studio.name=movie.studioname
+
